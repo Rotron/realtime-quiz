@@ -90,7 +90,6 @@
         vid.classList.add("stopfade");
       }
 
-      console.log(vid);
       vid.addEventListener('ended', function () {
         // only functional if "loop" is removed
         this.load();

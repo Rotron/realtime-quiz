@@ -72,9 +72,30 @@
       var slider = $('#quiz-slider');
       var numTab = slider.find('.nav-tabs > li').length;
 
+      var playSound = function(sound, loop) {
+        var snd = new Audio(sound);
+        if (typeof loop != 'undefined' && loop) {
+          snd.addEventListener('ended', function() {
+            console.log('sound '+sound +' ended');
+            snd.currentTime = 0;
+            snd.play();
+          });
+        }
+        snd.play();
+      };
+
+      @if (Session::get(\App\Http\Controllers\Manager\ManagerController::CURRENT_QUIZ) != -1)
+      $(document).ready(function() {
+        setTimeout(function() {
+          playSound('/assets/sounds/start_question.mp3');
+        }, 500);
+      });
+      @endif
+
       slider.find('.show-answer').click(function(event) {
         event.preventDefault();
 
+        playSound('/assets/sounds/true_answer.mp3');
         var ans = slider.find('.tab-pane.active .answer-section [data-answer="1"]');
         ans.addClass('success');
         var ansPos = ans.index();
@@ -89,8 +110,16 @@
       });
 
       slider.find('.stop-slider').click(function(event) {
+        event.preventDefault();
+
         if (stopped) return;
         stopped = true;
+
+        $('audio').each(function(index, sound) {
+          sound.pause();
+          sound.currentTime = 0;
+        });
+
         $('#time_count').remove();
         var path = '{{route('manager.quiz.stop')}}';
         $.get(path, function(datas) {
@@ -103,12 +132,14 @@
                 .text(1+Math.round(data.answer));
           });
         });
-
-        event.preventDefault();
       });
 
       slider.find('.start-time-slider').click(function(event) {
+        playSound('/assets/sounds/10s.mp3');
+        playSound('/assets/sounds/clock_bg.mp3');
+
         $('#time_count').removeClass('hidden');
+
         $('#time_count').startTimer({
           onComplete: function(element) {
             if (stopped) return;
