@@ -28,12 +28,12 @@
   <div class="row" id="quiz-slider">
     @include('partials.quiz._slider')
     <div class="col-md-4">
-      <div class="card-item" style="min-height: 70px !important;">
+      <div class="card-item" style="min-height: 70px !important; background: #faf491; opacity: 0.65;">
       <div class="col-md-12">
         <div id="time_count" class="center-block hidden" data-seconds-left="{{$game->quiz_time}}" style="margin-bottom: 0;"></div>
       </div>
       </div>
-      <div class="card-item" style="min-height: 60px;">
+      <div class="card-item" style="min-height: 60px; padding-top: 70px; height: 400px !important;" id="score-card">
         <table class="table table-hover" style="margin-bottom: 0;">
           <thead>
           <tr>
@@ -60,7 +60,7 @@
                 @foreach($teams as $team)
                   <td data-target="score" data-team="{{$team->id}}" class="{{$currentQuiz <= $index ? '' : ($trueAnsTeams->where('id', $team->id)->first() ? 'success' : 'fail')}} team-result">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 92 46" enable-background="new 0 0 92 92" xml:space="preserve">
+                         viewBox="0 0 92 36" enable-background="new 0 0 92 36" xml:space="preserve">
                       <circle cx="45" cy="23" r="21" stroke-width="4" fill="none" class="svg-path"/>
                     </svg>
                     <h3>

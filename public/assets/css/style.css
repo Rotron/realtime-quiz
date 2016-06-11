@@ -286,10 +286,8 @@ td.team-result h3 {
 }
 
 .question-wrapper {
-    /*border-radius: 10px;*/
-    /*border: 1px dashed #35DAFA;*/
-    /*background: url("../images/background-pattern.jpg");*/
-    /*background-size: contain;*/
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .question-wrapper h5 {
@@ -347,6 +345,48 @@ td.team-result h3 {
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    border-right: 2px solid #08F;
+    /*border-right: 2px solid #08F;*/
     border-top: none;
+}
+
+.question-wrapper ::after {
+    content: "";
+    opacity: 0.65;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+    border-radius: 16px;
+    background: url('../images/border.png');
+    background-size: contain;
+}
+
+/* faf491 */
+#ans-display-card::after {
+    content: "";
+    opacity: 0.65;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+    border-radius: 16px;
+    background: url('../images/pa.png');
+    background-size: contain;
+}
+
+#score-card::after {
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+    border-radius: 16px;
+    background: url('../images/paper.png');
+    background-size: contain;
 }

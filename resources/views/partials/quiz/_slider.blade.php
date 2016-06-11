@@ -1,12 +1,12 @@
   <div class="col-md-12">
-    <div class="card-item" style="min-height: 190px;">
+    <div class="card-item opacity" style="min-height: 190px; height: 190px;" id="question-card">
       <div class="center-block">
       @if (Session::get(\App\Http\Controllers\Manager\ManagerController::CURRENT_QUIZ) == -1)
       @else
       <div class="question-section text-justify" data-question-id="{{$question->id}}">
           <h4></h4>
           <div class="question-wrapper">
-            <h5 style="font-size: {{strlen($question->question) > 300 ? 26 : 36}}px;">
+            <h5 style="font-size: {{strlen($question->question) > 300 ? 25 : 36}}px;">
               {!! $question->question !!}
             </h5>
           </div>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="col-md-8">
-  <div class="card-item card-lg">
+  <div class="card-item card-lg" id="ans-display-card">
   <!-- Tab panes -->
   <div class="tab-content">
     @if (Session::get(\App\Http\Controllers\Manager\ManagerController::CURRENT_QUIZ) == -1)
