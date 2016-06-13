@@ -113,31 +113,19 @@
 @endsection
 
 @section('extend-js')
-  <script>
-    $('body').keypress(function(event) {
-      console.log(event.which);
-      event.preventDefault();
-
-      if (event.which == 49) {
-        $('form input[name="ans"]').val(0);
-      } else if (event.which == 50) {
-        $('form input[name="ans"]').val(1);
-      } else if (event.which == 51) {
-        $('form input[name="ans"]').val(2);
-      }
-
-      $('form').submit();
-    });
-  </script>
   <script src="{{ asset('assets/js/socket.io.js') }}"></script>
   <script>
     var socket = io('http://{{env('REDIS_SERVER')}}:3000');
+    var isStart = false;
+    var firstF11 = false;
+
     socket.on("quiz_channel:App\\Events\\StopQuestionEvent", function() {
       $('#time_count').addClass('hidden');
       $('button').addClass('hidden');
     });
     socket.on("quiz_channel:App\\Events\\StartQuestionEvent", function() {
       console.log('start question');
+      isStart = true;
       $('button').removeClass('hidden');
 
       $('#time_count').removeClass('hidden');
@@ -171,6 +159,33 @@
 
       $('#time_count').empty();
       $('#time_count').data('seconds-left', quest.time);
+    });
+
+    $('body').keydown(function(event) {
+
+      if (!firstF11 && event.which == 122) {
+        firstF11 = true;
+        return true;
+      }
+
+      event.preventDefault();
+
+      if (!isStart) return;
+      var selected = -1;
+      if (event.which == 49) {
+        selected = 0;
+      } else if (event.which == 50) {
+        selected = 1;
+      } else if (event.which == 51) {
+        selected = 2;
+      }
+
+      if (selected < 0) return;
+
+      $("input[name=ans][value=" + selected + "]").prop('checked', 'checked');
+      console.log($('input[name=ans]:checked', '#myForm').val());
+
+      $('form').submit();
     });
   </script>
 @stop
