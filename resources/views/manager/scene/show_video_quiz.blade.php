@@ -3,13 +3,13 @@
 @section('content')
   <style>
     video.quiz {
-      position: absolute;
-      top: -5%;
+      position: fixed;
+      top: 0;
       bottom: 0;
-      left: -5%;
+      left: 0;
       right: 0;
-      width: 110%;
-      height: 110%;
+      width: 100%;
+      height: 100%;
     }
   </style>
 

@@ -128,6 +128,8 @@ class QuizController extends Controller
         $currentQuiz = \Session::get(ManagerController::CURRENT_QUIZ);
         $currentTurn = \Session::get(ManagerController::CURRENT_TURN);
 
+// dump($this->game->questions()->where('turn', $currentTurn)->get()->count()->get(0));
+//         dd($currentQuiz);
         $quest = $this->game->questions()->where('turn', $currentTurn)->get()->get($currentQuiz);
         $teams = $this->getTeamsByTurn($currentTurn);
         $teamIDs = $teams->map(function($t) {

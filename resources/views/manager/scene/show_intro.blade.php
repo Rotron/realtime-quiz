@@ -40,6 +40,7 @@
 
 @section('extend-js')
   <script>
+
     (function() {
       var vid = document.getElementById("bgvid");
 
@@ -61,6 +62,17 @@
   <script src="{{asset('/assets/js/flipclock.js')}}"></script>
   <script>
     var clock;
+    var playSound = function(sound, loop) {
+        var snd = new Audio(sound);
+        if (typeof loop != 'undefined' && loop) {
+          snd.addEventListener('ended', function() {
+            console.log('sound '+sound +' ended');
+            snd.currentTime = 0;
+            snd.play();
+          });
+        }
+        snd.play();
+      };
 
     $(document).ready(function() {
           (function() {
@@ -74,6 +86,8 @@
               countdown: true,
               callbacks: {
                 stop: function () {
+                  playSound('/assets/sounds/finished.mp3');
+
                   if (forceStop) return;
 
                   $('#team_clock').addClass('stop');

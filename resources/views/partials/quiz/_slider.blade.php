@@ -7,7 +7,7 @@
           <h4></h4>
           <div class="question-wrapper">
             <h5 style="font-size: {{strlen($question->question) > 300 ? 25 : 36}}px;">
-              {!! $question->question !!}
+              <strong>Câu {{$currentQuiz + 1}}:</strong> {!! $question->question !!}
             </h5>
           </div>
         </div>
@@ -125,11 +125,17 @@
         $.get(path, function(datas) {
           console.log(datas);
           $.each(datas, function(index, data) {
+            var i = Math.round(data.answer);
+            var tex = {
+              0: 'A',
+              1: 'B',
+              2: 'C'
+            };
             $('.table [data-question="'+data.question_id+'"] [data-target="score"][data-team="'+data.team_id+'"]')
                 .attr('data-answer', data.answer)
                 .data('answer', ''+data.answer)
                 .find('h3')
-                .text(1+Math.round(data.answer));
+                .text(tex[i]);
           });
         });
       });
@@ -146,13 +152,18 @@
             stopped = true;
             var path = '{{route('manager.quiz.stop')}}';
             $.get(path, function(datas) {
-              console.log(datas);
               $.each(datas, function(index, data) {
+                var i = Math.round(data.answer);
+                var tex = {
+                  0: 'A',
+                  1: 'B',
+                  2: 'C'
+                };
                 $('.table [data-question="'+data.question_id+'"] [data-target="score"][data-team="'+data.team_id+'"]')
                     .attr('data-answer', data.answer)
                     .data('answer', ''+data.answer)
                     .find('h3')
-                    .text(1+Math.round(data.answer));
+                    .text(tex[i]);
               });
             });
           }

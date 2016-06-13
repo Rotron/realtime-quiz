@@ -64,7 +64,14 @@
                       <circle cx="45" cy="23" r="21" stroke-width="4" fill="none" class="svg-path"/>
                     </svg>
                     <h3>
-                      {{$currentQuiz <= $index ? '' : ($ansTeams->where('id', $team->id)->first() ? $ansTeams->where('id', $team->id)->first()->pivot->answer+1 : '')}}
+                    <?php
+                      $text = [
+                        0 => 'A',
+                        1 => 'B',
+                        2 => 'C',
+                      ];
+                    ?>
+                      {{$currentQuiz <= $index ? '' : ($ansTeams->where('id', $team->id)->first() ? $text[$ansTeams->where('id', $team->id)->first()->pivot->answer] : '')}}
                     </h3>
                   </td>
                 @endforeach
