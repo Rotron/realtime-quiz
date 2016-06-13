@@ -113,6 +113,22 @@
 @endsection
 
 @section('extend-js')
+  <script>
+    $('body').keypress(function(event) {
+      console.log(event.which);
+      event.preventDefault();
+
+      if (event.which == 49) {
+        $('form input[name="ans"]').val(0);
+      } else if (event.which == 50) {
+        $('form input[name="ans"]').val(1);
+      } else if (event.which == 51) {
+        $('form input[name="ans"]').val(2);
+      }
+
+      $('form').submit();
+    });
+  </script>
   <script src="{{ asset('assets/js/socket.io.js') }}"></script>
   <script>
     var socket = io('http://{{env('REDIS_SERVER')}}:3000');

@@ -67,6 +67,17 @@
   <script src="{{asset('/assets/js/flipclock.js')}}"></script>
   <script>
     var clock;
+    var playSound = function(sound, loop) {
+      var snd = new Audio(sound);
+      if (typeof loop != 'undefined' && loop) {
+        snd.addEventListener('ended', function() {
+          console.log('sound '+sound +' ended');
+          snd.currentTime = 0;
+          snd.play();
+        });
+      }
+      snd.play();
+    };
 
     $(document).ready(function() {
       $('video.quiz').click(function(event) {
@@ -90,6 +101,7 @@
           countdown: true,
           callbacks: {
             stop: function () {
+              playSound('/assets/sounds/finished.mp3');
               if (forceStop) return;
 
               $('#{{str_slug($team['name'])}}_clock').addClass('stop');
