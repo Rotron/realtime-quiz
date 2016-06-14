@@ -139,6 +139,8 @@ h1.big-title small {
     /*position: absolute;*/
     /*bottom: 0;*/
     right: 0;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 #quiz-slider .stop-slider, #quiz-slider .start-time-slider {
     /*position: absolute;*/
@@ -148,10 +150,10 @@ h1.big-title small {
     right: calc(50% - 20px);
 }
 #quiz-slider .show-answer {
-    /*position: absolute;*/
-    /*bottom: 0;*/
+    position: fixed;
+    bottom: 10px;
     z-index: 1000;
-    left: 0;
+    right: 350px;
 }
 
 #quiz-slider .question-section {

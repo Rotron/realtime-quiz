@@ -81,6 +81,7 @@
           {{Session::get('message')}}
         </div>
       @endif
+      <h1>{!! \Auth::user()->name !!}</h1>
       <form class="card-item card-lg" method="post">
         <div class="col-md-12">
           <div id="time_count" class="center-block" data-seconds-left="{{env('TIME_QUIZ')}}"></div>
@@ -90,9 +91,9 @@
         </h3>
         <div class="answer-section" id="answers">
         </div>
-        <div>
+        <!-- <div>
           <button type="submit" class="btn btn-success center-block btn-lg hidden">Submit</button>
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
@@ -126,13 +127,13 @@
     socket.on("quiz_channel:App\\Events\\StartQuestionEvent", function() {
       console.log('start question');
       isStart = true;
-      $('button').removeClass('hidden');
+      // $('button').removeClass('hidden');
 
       $('#time_count').removeClass('hidden');
       $('#time_count').startTimer({
         onComplete: function(element){
           element.addClass('hidden');
-          $('button').addClass('hidden');
+          // $('button').addClass('hidden');
         }
       });
     });
@@ -144,7 +145,9 @@
 
       $('#question').text(question);
       $('#answers').empty();
-      $('button').addClass('hidden');
+      $('.alert').remove();
+      
+      // $('button').addClass('hidden');
       $.each(answers, function(index, elem) {
         var template = $($('#ans-template').html());
         template.find('[name="ans"]').attr('id', 'radio_'+index).val(index);

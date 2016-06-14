@@ -3,7 +3,7 @@
 <head>
   <title>@yield('title', 'Quiz App')</title>
 
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'> -->
   <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 

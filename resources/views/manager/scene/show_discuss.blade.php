@@ -56,7 +56,6 @@
 
       vid.addEventListener('ended', function () {
         // only functional if "loop" is removed
-        console.log('123');
         this.load();
         this.play();
         // to capture IE10
@@ -100,8 +99,8 @@
               if (forceStop) return;
 
               $('#{{str_slug($team['name'])}}_clock').addClass('stop');
-              clock.setCountdown(false);
-              clock.start();
+              // clock.setCountdown(false);
+              // clock.start();
             }
           }
         });

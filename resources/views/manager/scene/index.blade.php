@@ -21,7 +21,7 @@
       </div>
 
       <div class="card-item card-hover grow" style="margin-bottom: 30px">
-        <a href="{{route('manager.scene.show', ['id' => 'quiz'])}}" ><h1>Phần thi lý thuyết
+        <a href="{{route('manager.scene.show', ['id' => 'quiz'])}}" ><h1>Phần thi kiến thức
             <img src="{{asset('/assets/images/part2.png')}}" alt="" class="tile-icon">
           </h1></a>
       </div>
